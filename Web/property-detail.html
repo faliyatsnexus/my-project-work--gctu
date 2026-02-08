@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Family Home | Fali DreamHome Realty</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 1rem 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffc107;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ffc107;
+        }
+        
+        .property-header {
+            padding: 2rem 0;
+            background-color: #f5f7fa;
+        }
+        
+        .property-header h1 {
+            color: #1a3a5f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-price {
+            color: #ffc107;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-location {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .property-location:before {
+            content: "📍";
+            margin-right: 0.5rem;
+        }
+        
+        .property-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+        }
+        
+        .property-gallery {
+            margin-bottom: 2rem;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+        
+        .property-details h2, .agent-info h2 {
+            color: #1a3a5f;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .detail-value {
+            color: #1a3a5f;
+        }
+        
+        .description {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .amenities {
+            margin-bottom: 2rem;
+        }
+        
+        .amenities-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            list-style: none;
+        }
+        
+        .amenities-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .amenities-list li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .agent-info {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .agent-details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .agent-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .agent-contact {
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .contact-icon {
+            margin-right: 0.8rem;
+            color: #ffc107;
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+        
+        .inquiry-form input, .inquiry-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .inquiry-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #1a3a5f;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #ffd54f;
+        }
+        
+        .btn-secondary {
+            background-color: #1a3a5f;
+            color: white;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2a4a6f;
+        }
+        
+        .similar-properties {
+            background-color: #f5f7fa;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a3a5f;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .property-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: white;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .property-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .property-info {
+            padding: 1.5rem;
+        }
+        
+        .property-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1a3a5f;
+        }
+        
+        .property-price-small {
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature span {
+            margin-left: 0.3rem;
+        }
+        
+        footer {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        @media (max-width: 992px) {
+            .property-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 0.8rem;
+                margin-right: 0.8rem;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .amenities-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Fali DreamHome Realty</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="property-header">
+            <h1>Modern Family Home in Greater Accra</h1>
+            <div class="property-price">Ghc450,000</div>
+            <div class="property-location">Nii koole Street, Abanjo, Accra</div>
+        </div>
+        
+        <div class="property-content">
+            <div class="property-main">
+                <div class="property-gallery">
+                    <img id="mainImage" src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Modern Family Home" class="main-image">
+                    <div class="thumbnail-grid">
+                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Front view" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Living room" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Kitchen" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bedroom" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Backyard" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bathroom" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                
+                <div class="property-details">
+                    <h2>Property Details</h2>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Property Type:</span>
+                            <span class="detail-value">Single Family Home</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Year Built:</span>
+                            <span class="detail-value">2018</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Square Footage:</span>
+                            <span class="detail-value">2,500 sqft</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Lot Size:</span>
+                            <span class="detail-value">0.25 acres</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Bedrooms:</span>
+                            <span class="detail-value">4</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Bathrooms:</span>
+                            <span class="detail-value">3</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Garage:</span>
+                            <span class="detail-value">2 cars (attached)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Parking:</span>
+                            <span class="detail-value">Driveway (4 cars)</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Description</h2>
+                    <div class="description">
+                        <p>Welcome to this stunning modern family home located in the desirable neighborhood. This beautifully maintained property offers 4 bedrooms, 3 bathrooms, and 2,500 square feet of living space.</p>
+                        <p>The open-concept floor plan features a spacious living room with a cozy fireplace, a gourmet kitchen with stainless steel appliances, granite countertops, and a large center island. The kitchen flows seamlessly into the dining area, perfect for entertaining.</p>
+                        <p>The master suite is a true retreat with a walk-in closet and an ensuite bathroom featuring dual vanities and a walk-in shower. Three additional bedrooms provide ample space for family, guests, or a office home.</p>
+                        <p>Outside, you'll find a beautifully landscaped backyard with a patio area, perfect for small gathering for barbecues and outdoor relaxation. The property also includes a two-car attached garage and a spacious driveway.</p>
+                        <p>Located in a family-friendly community with excellent schools, parks, and shopping nearby. This home offers the perfect blend of modern comfort .</p>
+                    </div>
+                    
+                    <div class="amenities">
+                        <h2>Property Features & Amenities</h2>
+                        <ul class="amenities-list">
+                            <li>Central Air Conditioning</li>
+                            <li>Forced Air Heating</li>
+                            <li>Energy Efficient Windows</li>
+                            <li>Hardwood Flooring</li>
+                            <li>Updated Kitchen with Granite Counters</li>
+                            <li>Stainless Steel Appliances</li>
+                            <li>Master Suite with Walk-in Closet</li>
+                            <li>Finished Basement</li>
+                            <li>Laundry Room</li>
+                            <li>Fireplace in Living Room</li>
+                            <li>Patio & Backyard</li>
+                            <li>Landscaped Garden</li>
+                            <li>Two-car Garage</li>
+                            <li>Smart Home Features</li>
+                            <li>Security System</li>
+                            <li>Close to Schools & Parks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="property-sidebar">
+                <div class="agent-info">
+                    <h2>Listing Agent</h2>
+                    <div class="agent-details">
+                        <img src="https://images.unsplash.com/photo-1556157382-2eda3e8a9944?ixlib=rb-1.2.1&auto=format&fit=crop&w-600&q=80" alt="Michael Chen" class="agent-img">
+                        <div>
+                            <h3>Michael Chen</h3>
+                            <p>Senior Real Estate Agent</p>
+                            <p>10+ years experience</p>
+                        </div>
+                    </div>
+                    
+                    <div class="agent-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>(233) 245 610 778 </span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <span>michael@falidreamhomerealty.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">💼</span>
+                            <span>Licensed since 2012</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inquiry-form">
+                    <h2>Schedule a Viewing</h2>
+                    <form id="viewingForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="tel" placeholder="Phone Number">
+                        <input type="date" placeholder="Preferred Date">
+                        <textarea placeholder="Additional Notes or Questions"></textarea>
+                        <button type="submit" class="btn">Request Viewing</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='contact.html'">Contact Agent</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="similar-properties">
+        <div class="container">
+            <h2 class="section-title">Similar Properties</h2>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Suburban House" class="property-img">
+                    <div class="property-info">
+                        <h3>Cozy House</h3>
+                        <p class="property-price-small">Ghc275,000</p>
+                        <p>Charming 3-bedroom house with a large backyard, perfect for families.</p>
+                        <div class="property-features">
+                            <div class="feature">🛏️ <span>3 Beds</span></div>
+                            <div class="feature">🛁 <span>2 Baths</span></div>
+                            <div class="feature">📐 <span>1,800 sqft</span></div>
+                        </div>
+                        <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Modern Townhouse" class="property-img">
+                    <div class="property-info">
+                        <h3>Modern Townhouse</h3>
+                        <p class="property-price-small">Ghc385,000</p>
+                        <p>Contemporary townhouse with 3 bedrooms, modern kitchen, and rooftop terrace.</p>
+                        <div class="property-features">
+                            <div class="feature">🛏️ <span>3 Beds</span></div>
+                            <div class="feature">🛁 <span>2.5 Baths</span></div>
+                            <div class="feature">📐 <span>1,900 sqft</span></div>
+                        </div>
+                        <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Luxury Villa" class="property-img">
+                    <div class="property-info">
+                        <h3>Luxury Villa in Accra</h3>
+                        <p class="property-price-small">Ghc950,000</p>
+                        <p>Stunning 5-bedroom villa with panoramic views, pool, and entertainment areas.</p>
+                        <div class="property-features">
+                            <div class="feature">🛏️ <span>5 Beds</span></div>
+                            <div class="feature">🛁 <span>4 Baths</span></div>
+                            <div class="feature">📐 <span>4,200 sqft</span></div>
+                        </div>
+                        <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <footer>
+        <div class="container">
+            <div class="logo">Fali DreamHome Realty</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="properties.html">Properties</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>Emmanuel Main Street, Adentan, Accra • (233) 456-789-272 • info@falidreamhomerealty.com</p>
+            <p class="copyright">&copy; 2026 Fali DreamHome Realty. All rights reserved. Class Assigment.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Image gallery functionality
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+        
+        // Form submission handling
+        document.getElementById('viewingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your viewing request! Our agent will contact you within 24 hours to schedule an appointment.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

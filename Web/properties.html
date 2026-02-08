@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties | Fali DreamHome Realty</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 1rem 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffc107;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ffc107;
+        }
+        
+        .page-title {
+            background-color: #f5f7fa;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title h1 {
+            color: #1a3a5f;
+            text-align: center;
+        }
+        
+        .filter-section {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1a3a5f;
+        }
+        
+        select, input {
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #1a3a5f;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+        }
+        
+        .btn:hover {
+            background-color: #ffd54f;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .property-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .property-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .property-info {
+            padding: 1.5rem;
+        }
+        
+        .property-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1a3a5f;
+        }
+        
+        .property-price {
+            color: #ffc107;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-location {
+            color: #666;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .property-location:before {
+            content: "📍";
+            margin-right: 0.5rem;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature span {
+            margin-left: 0.3rem;
+        }
+        
+        .property-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        .for-sale {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .for-rent {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .pagination a {
+            color: #1a3a5f;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            margin: 0 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .pagination a.active {
+            background-color: #1a3a5f;
+            color: white;
+        }
+        
+        .pagination a:hover:not(.active) {
+            background-color: #f1f1f1;
+        }
+        
+        footer {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 0.8rem;
+                margin-right: 0.8rem;
+            }
+            
+            .filter-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">DreamHome Realty</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Available Properties</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="filter-section">
+            <h2 style="margin-bottom: 1rem; color: #1a3a5f;">Filter Properties</h2>
+            <form class="filter-form">
+                <div class="form-group">
+                    <label for="type">Property Type</label>
+                    <select id="type">
+                        <option value="any">Any Type</option>
+                        <option value="house">House</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="condo">Condo</option>
+                        <option value="townhouse">Townhouse</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price">Max Price</label>
+                    <select id="price">
+                        <option value="any">Any Price</option>
+                        <option value="200000">$200,000</option>
+                        <option value="300000">$300,000</option>
+                        <option value="400000">$400,000</option>
+                        <option value="500000">$500,000</option>
+                        <option value="750000">$750,000</option>
+                        <option value="1000000">$1,000,000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bedrooms">Bedrooms</label>
+                    <select id="bedrooms">
+                        <option value="any">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="any">Any Status</option>
+                        <option value="sale">For Sale</option>
+                        <option value="rent">For Rent</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Search Properties</button>
+            </form>
+        </section>
+
+        <div class="properties-grid">
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Modern House" class="property-img">
+                <div class="property-info">
+                    <h3>Modern Family Home</h3>
+                    <p class="property-price">$450,000</p>
+                    <p class="property-location">123 Maple Street, Suburbia</p>
+                    <p>Beautiful 4-bedroom house in a quiet suburban neighborhood with modern amenities.</p>
+                    <div class="property-features">
+                        <div class="feature">🛏️ <span>4 Beds</span></div>
+                        <div class="feature">🛁 <span>3 Baths</span></div>
+                        <div class="feature">📐 <span>2,500 sqft</span></div>
+                    </div>
+                    <span class="property-status for-sale">For Sale</span>
+                    <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Luxury Apartment" class="property-img">
+                <div class="property-info">
+                    <h3>Luxury Downtown Apartment</h3>
+                    <p class="property-price">$320,000</p>
+                    <p class="property-location">456 City Center Ave, Downtown</p>
+                    <p>Stylish 2-bedroom apartment in the heart of downtown with stunning city views.</p>
+                    <div class="property-features">
+                        <div class="feature">🛏️ <span>2 Beds</span></div>
+                        <div class="feature">🛁 <span>2 Baths</span></div>
+                        <div class="feature">📐 <span>1,200 sqft</span></div>
+                    </div>
+                    <span class="property-status for-sale">For Sale</span>
+                    <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Suburban House" class="property-img">
+                <div class="property-info">
+                    <h3>Cozy Suburban House</h3>
+                    <p class="property-price">$275,000</p>
+                    <p class="property-location">789 Oak Lane, Greenville</p>
+                    <p>Charming 3-bedroom house with a large backyard, perfect for families.</p>
+                    <div class="property-features">
+                        <div class="feature">🛏️ <span>3 Beds</span></div>
+                        <div class="feature">🛁 <span>2 Baths</span></div>
+                        <div class="feature">📐 <span>1,800 sqft</span></div>
+                    </div>
+                    <span class="property-status for-sale">For Sale</span>
+                    <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Lakeside Cottage" class="property-img">
+                <div class="property-info">
+                    <h3>Lakeside Cottage</h3>
+                    <p class="property-price">$1,800/month</p>
+                    <p class="property-location">101 Lakeview Drive, Lakeland</p>
+                    <p>Beautiful lakeside cottage with 2 bedrooms and direct access to the lake.</p>
+                    <div class="property-features">
+                        <div class="feature">🛏️ <span>2 Beds</span></div>
+                        <div class="feature">🛁 <span>1 Bath</span></div>
+                        <div class="feature">📐 <span>1,100 sqft</span></div>
+                    </div>
+                    <span class="property-status for-rent">For Rent</span>
+                    <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Modern Townhouse" class="property-img">
+                <div class="property-info">
+                    <h3>Modern Townhouse</h3>
+                    <p class="property-price">$385,000</p>
+                    <p class="property-location">234 Urban Plaza, City Center</p>
+                    <p>Contemporary townhouse with 3 bedrooms, modern kitchen, and rooftop terrace.</p>
+                    <div class="property-features">
+                        <div class="feature">🛏️ <span>3 Beds</span></div>
+                        <div class="feature">🛁 <span>2.5 Baths</span></div>
+                        <div class="feature">📐 <span>1,900 sqft</span></div>
+                    </div>
+                    <span class="property-status for-sale">For Sale</span>
+                    <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Luxury Villa" class="property-img">
+                <div class="property-info">
+                    <h3>Luxury Villa</h3>
+                    <p class="property-price">$950,000</p>
+                    <p class="property-location">555 Prestige Road, Hilltop</p>
+                    <p>Stunning 5-bedroom villa with panoramic views, pool, and spacious entertainment areas.</p>
+                    <div class="property-features">
+                        <div class="feature">🛏️ <span>5 Beds</span></div>
+                        <div class="feature">🛁 <span>4 Baths</span></div>
+                        <div class="feature">📐 <span>4,200 sqft</span></div>
+                    </div>
+                    <span class="property-status for-sale">For Sale</span>
+                    <a href="property-detail.html" class="btn" style="margin-top: 1rem; display: inline-block;">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">Next</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="logo">Fali DreamHome Realty</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="properties.html">Properties</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>Emmanuel Main Street, Adentan, Accra • (233) 456-789-272 • info@falidreamhomerealty.com</p>
+            <p class="copyright">&copy; 2026 Fali DreamHome Realty. All rights reserved. Class Assigment.</p>
+        </div>
+    </footer>
+</body>
+</html>
